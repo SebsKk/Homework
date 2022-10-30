@@ -1,18 +1,6 @@
 #numpy to temat przewodni dzisiejszego cwiczenia 
 import numpy as np 
-import pandas as pd 
-import matplotlib as mp
-
-# numpy to bilioteka na ktorej bazuje wiele biblitoek do obliczen naukowych
-# zaimplementowane sa w niej wektory; tablice jako struktura danych 
-# listy nie maja ustalonego z gory rozmiaru, tablice maja z gory narzucony rozmiar
-# tablice musza przechowywac dane tego samego typu
-
-"""arr = np.random.random(10) 
-print(arr)
-
-x = [num for num in arr if num > 0.75]
-print(x)"""
+import pandas as pd
 
 # Zad 1 
 prez = pd.read_csv('C:/Users/kaczm/Downloads/president_heights.csv')
