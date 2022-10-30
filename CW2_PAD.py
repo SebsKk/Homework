@@ -61,10 +61,10 @@ print(np.ma.median(np.ma.masked_equal(seattle_np, 0)))
 
 #3.6 Medianę opadów latem w 2014 roku (czyli dni pomiędzy dniem 172 a 262)
 
-arr_summ  = seattle['PRCP']
-list_of_summer_days = np.array([val for ind, val in enumerate(arr_summ) if ind >= 171 and ind <262])
-median_summer = np.median(list_of_summer_days)
-print(median_summer)
+mymask = np.array([0 if x < 170 or x >=200 else 1 for x in range(365)])
+
+x = np.ma.masked_array(seattle['PRCP'], mask = mymask)
+print(np.ma.median(x))
 # Mediana opadów w lecie to 0.0
 
 #3.7 Maksymalne opady latem 2014 roku
