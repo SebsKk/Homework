@@ -23,7 +23,7 @@ desr = prez.describe()
 
 # Zad 2 
 
-zad2 = pd.read_csv('C:/Users/kaczm/Downloads/Zadanie_2.csv', delimiter = ';', header = None)
+zad2 = np.array(pd.read_csv('C:/Users/kaczm/Downloads/Zadanie_2.csv', delimiter = ';', header = None))
 
 
 ww, wm = np.linalg.eig(zad2)
