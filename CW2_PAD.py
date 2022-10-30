@@ -55,9 +55,8 @@ print((seattle[(seattle['PRCP'] < 0.2)].count()))
 
 #3.5 Mediana opadow dni deszczowych w 2014 
 
-list_of_rainy_days = np.array([val for val in seattle['PRCP'] if val > 0])
-median_rainy = np.median(list_of_rainy_days)
-print(median_rainy)
+seattle_np = np.array(seattle['PRCP'])
+print(np.ma.median(np.ma.masked_equal(seattle_np, 0)))
 #Mediana w dni deszczowe to 0.19488188976377951
 
 #3.6 Medianę opadów latem w 2014 roku (czyli dni pomiędzy dniem 172 a 262)
