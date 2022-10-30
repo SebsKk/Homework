@@ -61,21 +61,24 @@ print(np.ma.median(np.ma.masked_equal(seattle_np, 0)))
 
 #3.6 Medianę opadów latem w 2014 roku (czyli dni pomiędzy dniem 172 a 262)
 
-mymask = np.array([0 if x < 170 or x >=200 else 1 for x in range(365)])
+mymask = np.array([0 if x >=172 and x <262 else 1 for x in range(365)])
 
-x = np.ma.masked_array(seattle['PRCP'], mask = mymask)
-print(np.ma.median(x))
+v = np.ma.masked_array(seattle['PRCP'], mask = mymask)
+print(np.ma.median(v))
+
 # Mediana opadów w lecie to 0.0
 
 #3.7 Maksymalne opady latem 2014 roku
 
-print(list_of_summer_days.max())
+print(np.ma.median(v))
 # Maksymalne opady w lecie to 0.8503937007874016
 
 #3.8 Maksymalne opady poza latem 2014 roku (czyli wiosna, jesień i zima)
 
-list_of_non_summer_days = np.array([val for ind, val in enumerate(arr_summ) if ind < 171 or ind >= 262])
-print(list_of_non_summer_days.max())
+mymask3 = np.array([0 if x <172 or x >= 262 else 1 for x in range(365)])
+
+p = np.ma.masked_array(seattle['PRCP'], mask = mymask3)
+print(np.ma.max(x))
 # Maksymalne opady poza latem to 1.8385826771653544
 
 #Zad 4 
