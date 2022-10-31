@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd 
 import matplotlib as mp
 
+
 # Zad 1 
 prez = pd.read_csv('C:/Users/kaczm/Downloads/president_heights.csv')
 
@@ -62,14 +63,17 @@ med_rainy = np.ma.median(np.ma.masked_equal(seattle_np, 0))
 print('Mediana opadow dni deszczowych w 2014 to {}'.format(med_rainy))
 #3.5 Mediana opadow dni deszczowych w 2014 to 0.19488188976377951
 arr_summ  = seattle['PRCP']
-list_of_summer_days = np.array([val for ind, val in enumerate(arr_summ) if ind >= 171 and ind <262])
-median_summer = np.median(list_of_summer_days)
-print('mediana opadow latem to {}'.format(median_summer))
+mymask = np.array([0 if x >= 172 or x < 262 else 1 for x in range(365)])
+median_summer = np.ma.masked_array(arr_summ, mask = mymask)
+print('mediana opadow latem to {}'.format(np.ma.median(median_summer)))
 #3.6 Medianę opadów latem w 2014 roku (czyli dni pomiędzy dniem 172 a 262) to 0.0
-print('Maksymalne opady latem 2014 r to {}'.format(list_of_summer_days.max()))
+mymask = np.array([0 if x >=172 and x <262 else 1 for x in range(365)])
+v = np.ma.masked_array(seattle['PRCP'], mask = mymask)
+print('Maksymalne opady latem 2014 r to {}'.format(np.ma.max(v)))
 #3.7 Maksymalne opady latem 2014 roku to 0.8503937007874016
-list_of_non_summer_days = np.array([val for ind, val in enumerate(arr_summ) if ind < 171 or ind >= 262])
-print('Maksymalne opady poza latem to {}'.format(list_of_non_summer_days.max()))
+mymask2 = np.array([0 if x < 172 and x >- 262 else 1 for x in range(365)])
+list_of_non_summer_days = np.ma.masked_array(arr_summ, mask = mymask2)
+print('Maksymalne opady poza latem to {}'.format(np.ma.max(list_of_non_summer_days)))
 #3.8 Maksymalne opady poza latem 2014 roku (czyli wiosna, jesień i zima) to 1.8385826771653544
 
 #Zad 4 
@@ -103,5 +107,6 @@ scalar = np.dot(A,B)
 
 length_B = np.linalg.norm(B)
 #Długość wektora B to 5.0990195135927845
+
 
 
